@@ -1,0 +1,17 @@
+type Query{
+    allProducts : [Product] #list of product, allProducts the same name of method defined in controller
+    productById(id : String) : Product
+}
+
+type Product {
+    id : String,
+    name : String,
+    price : Float,
+    quantity : Int,
+    category : Category
+}
+
+type Category{
+    id : Float,
+    name : String
+}
