@@ -20,7 +20,7 @@ import java.util.UUID;
 public class ProductGraphQlController {
 
     public final ProductGraphQlService productGraphQlService;
-    public final CategoryGraphQlService categoryGraphQlService;
+
 
     @QueryMapping
     public List<Product> allProducts(){
@@ -34,13 +34,18 @@ public class ProductGraphQlController {
 
     @MutationMapping
     public Product addProduct(@Argument ProductRequestDto product){
-        Product productToSave = new Product();
-        Category category = categoryGraphQlService.categoryById(product.getCategoryId());
-        productToSave.setId(UUID.randomUUID().toString());
-        productToSave.setName(product.getName());
-        productToSave.setPrice(product.getPrice());
-        productToSave.setQuantity(product.getQuantity());
-        productToSave.setCategory(category);
-        return productGraphQlService.add(productToSave);
+
+        return productGraphQlService.add(product);
+    }
+
+    @MutationMapping
+    public Product updateProduct(@Argument ProductRequestDto productRequestDto,
+                                 @Argument String id){
+        return productGraphQlService.update(productRequestDto,id);
+    }
+
+    @MutationMapping
+    public void deleteProduct(@Argument String id){
+        productGraphQlService.delete(id);
     }
 }

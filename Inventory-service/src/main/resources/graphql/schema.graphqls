@@ -7,6 +7,8 @@ type Query{
 }
 type Mutation{
     addProduct (product : ProductRequestDto) : Product
+    updateProduct (productRequestDto : ProductRequestDto, id : String) : Product
+    deleteProduct (id : String) : String #id the method return void, we can use any other type
 }
 
 type Product {
@@ -30,3 +32,5 @@ type Category{
     name : String
     products : [Product]
 }
+#all request used for testing, we should aa them in a file
+#and add it in front end and store it because will be called by library that use GraphQl
