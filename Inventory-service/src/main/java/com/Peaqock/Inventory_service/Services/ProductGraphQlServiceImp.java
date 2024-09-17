@@ -1,4 +1,4 @@
-package com.Peaqock.Inventory_service.Service;
+package com.Peaqock.Inventory_service.Services;
 
 import com.Peaqock.Inventory_service.Entities.Product;
 import com.Peaqock.Inventory_service.Repositories.ProductRepository;
@@ -22,5 +22,10 @@ public class ProductGraphQlServiceImp implements  ProductGraphQlService{
         return productRepository.findById(id).orElseThrow(
                 ()-> new RuntimeException(String.format("Product with %s not found",id))
                 );
+    }
+
+    @Override
+    public Product add(Product product) {
+        return productRepository.save(product);
     }
 }

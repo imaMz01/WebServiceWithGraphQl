@@ -1,6 +1,12 @@
 type Query{
     allProducts : [Product] #list of product, allProducts the same name of method defined in controller
     productById(id : String) : Product
+    allCategories : [Category]
+    categoryById(id : Float) : Category
+
+}
+type Mutation{
+    addProduct (product : ProductRequestDto) : Product
 }
 
 type Product {
@@ -11,7 +17,16 @@ type Product {
     category : Category
 }
 
+input ProductRequestDto {
+
+    name : String,
+    price : Float,
+    quantity : Int,
+    categoryId : Float
+}
+
 type Category{
     id : Float,
     name : String
+    products : [Product]
 }
